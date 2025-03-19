@@ -72,7 +72,7 @@ lm.age
 #at a very basic level this tells us the overall coefficients
 #y= ax+b+ϵ
 #y=0.288x+29.95
-#so if we want to predict how long on average an whale of 40 years old
+#so if we want to predict how long on average a whale of 40 years old is:
 #0.288*40+29.95 = 41.47m
 
 #remember:
@@ -188,7 +188,7 @@ ggplot(df1, aes(age, length_m)) +geom_point() +
 
 #SIDE NOTE: prediction and confidence intervals are different concepts
 #confidence intervals: how confident are we that the true mean lies within this margin?
-#prediction intervals: if we picked a random interval how confident are we that they would fall within this margin?
+#prediction intervals: if we picked a random individual how confident are we that they would fall within this margin?
 
 #they have different applications, in general confidence intervals are more useful for model interpretation.
 

@@ -213,7 +213,7 @@ table(RIKZdat$week)
 #I could try a quadratic (or other polynomial)
 #but given it's count data I will try a negative binomial and see how it looks
 nbfit.inter <- MASS::glm.nb(Richness ~ NAP * week, data = RIKZdat)
-#you may get an error saying thea iteration limit reached
+#you may get an error saying the iteration limit reached
 #this can happens if our data doesn't really conform to a NB, it may be closer to Poisson or underdispersion
 #for now we will ignore, the residuals will tell us if there's an issue in model fit anyway
 

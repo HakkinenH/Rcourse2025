@@ -1,7 +1,7 @@
 
 #############
 # GENERALISED LINEAR MODEL (count data)
-# poisson, negative binomial
+# poisson, quasipoisson, negative binomial
 #############
 
 
@@ -37,7 +37,7 @@ head(dace)
 plot(dace$do2, dace$longnosedace)
 plot(dace$acreage, dace$longnosedace)
 plot(dace$so4, dace$longnosedace)
-#diffcult to tell at this scale, but a positive correlation between acreage and number?
+#difficult to tell at this scale, but a positive correlation between acreage and number?
 
 #check response variable distribution
 hist(dace$longnosedace, breaks=20)
@@ -109,6 +109,7 @@ check_model(glmQdace, check = c("linearity", "homogeneity", "qq", "normality"))
 #but let's look at overdispersion
 #Quasipoisson is a lot more flexible than poisson, but it has limits
 #if dispersion ratio is over 15 we might want to consider alternatives
+#again, before I ran the model I looked up assumptions of quasipoisson distribution, I didn't magically know this!
 
 
 #check for overdispersion
@@ -116,7 +117,7 @@ check_overdispersion(glmQdace)
 #it's 29.4 Bad news
 #double check of residual deviance over df is 1590.0/61 (26.1). So not good.
 
-#conlusion: this model is functional but has some issues, we might want to try an alternative
+#conclusion: this model is functional but has some issues, we might want to try an alternative
 
 summary(glmQdace)
 

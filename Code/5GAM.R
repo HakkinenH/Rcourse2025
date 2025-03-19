@@ -201,10 +201,10 @@ par(mfrow=c(1,1))
 #residuals look good!
 
 summary(mod_gam2)
-#health is non-significat, AND edf is at exactly 1
+#health is non-significant, AND edf is at exactly 1
 #The effective degrees of freedom with value 1 suggests that it has essentially been reduced to a simple linear effect.
 
-#extracting indivdual effects and parameters from GAMs is extremely difficult
+#extracting individual effects and parameters from GAMs is extremely difficult
 #instead we use "component" plots
 plot(ggeffects::ggpredict(mod_gam2), facets = TRUE)
 gratia::draw(mod_gam2)

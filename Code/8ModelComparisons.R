@@ -26,6 +26,8 @@ setwd("../")
 #load packages
 source("./code/0Packages.R")
 
+
+#INTRODUCTION
 #there are occasions when we may wish to consider several models and make informed choices between them
 #if we only have a pair of models, then a simple anova() or lrtest() are enough to compare them
 #but what if we have lots of potential models (e.g. based on different distributions?
@@ -38,7 +40,7 @@ source("./code/0Packages.R")
 #in these cases we explore how well they explain the data, and compare AIC scores
 #the lower the better.
 
-#remember though that AIC is relative!!
+#remember though that AIC is relative!! It is an estimator of prediction error
 #your "best" model may still be terrible
 #so always look at residuals, plots and summaries as well
 

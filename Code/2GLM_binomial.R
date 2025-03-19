@@ -48,8 +48,14 @@ table(mite1$Topo, mite1$pa)
 hist(mite1$pa)
 #yep that's binomial
 
-#check distribution of predictor. This does not need to confirm to any particular distribution, but shouldn'yt have massive outliers
+#check distribution of predictor. This does not need to confirm to any particular distribution, but shouldn't have massive outliers
 hist(mite1$WatrCont)
+
+
+#############
+### RUN A GLM
+#aka a Generalised Linear Model based on a binomial distribution
+#############
 
 
 #run the model
@@ -72,7 +78,7 @@ plot(binplot)
 #these test the residual distribution against a standardised null set,
 #and return whether the distribution significantly differs or not
 #For binomial models, this is the Hosmer-Lemeshow test
-#BUT they are senstive to sample sizes, category sizes, implementation in package
+#BUT they are sensitive to sample sizes, category sizes, implementation in package
 #and many other things. I generally don't recommend them, but be aware they exist
 #your own judgement is usually better than a battery of tests
 
@@ -83,7 +89,7 @@ plot(binplot)
 #this means they assume that the data mean is proportional to variance. If it isn't, the data is overdispersed!
 #This is a major issue as it means your data doesn't strictly fit a binomial distribution
 #If you have over dispersion, you probably need another distribution (like a quasibinomial)
-#To check for overdispersion, a rule of thumb is devide residual deviance by degrees of freedom
+#To check for overdispersion, a rule of thumb is divide residual deviance by degrees of freedom
 #if it's greater than 1, then you have issues!
 summary(logit.reg)
 48.762/67
@@ -109,7 +115,7 @@ inv.logit(-0.015813) #0.496
 #probability of presence on blanket moss (intercept):
 inv.logit(4.464402) #0.9886194
 #That doesn't make much sense! we never saw such high rates of prevalence
-#this is because the intercept is where continous variables are at 0. In this case that's Water Content
+#this is because the intercept is where continuous variables are at 0. In this case that's Water Content
 #in real life we never saw water content below 134, but the model has extrapolated back to 0
 #hence it doesn't make much sense
 #this is one reason we might use scaling! Then the mean of water content is 0, and we scale around that.
@@ -126,7 +132,7 @@ plot(logit.reg1)
 summary(logit.reg1)
 
 #let's try again with the new figures from our scaled dataset
-#at the mean water content (i.e. WatrCont_s = 0), the probabiltiy of presence on blanket moss is:
+#at the mean water content (i.e. scaled WatrCont_s = 0), the probability of presence on blanket moss is:
 inv.logit(-2.0288) #0.116
 #on hummocks it is
 inv.logit(-2.0288 + 2.0908) #0.515

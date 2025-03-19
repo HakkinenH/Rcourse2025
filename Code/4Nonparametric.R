@@ -48,8 +48,8 @@ hist(bb1$barley)
 #definitely non-normal
 
 #If these were normal this would be a straight-forward t-test
-#but unfortunately that's not an optio
-#we could much about with transformation, alternative distributions etc.
+#but unfortunately that's not an option
+#we could mess about with transformation, alternative distributions etc.
 #OR we could just do a non-parametric test
 #easier and more robust
 
@@ -106,7 +106,7 @@ kr1<-kruskal.test(weight ~ feed, data=chickwts)
 summary(an1)
 kr1
 
-#linear regression is a lot more detailed, but they agree that the model shows an overall signficant effect of feed!
+#linear regression is a lot more detailed, but they agree that the model shows an overall significant effect of feed!
 
 #if we wanted to get a detailed pair-wise comparison using a non-parametric method, we can
 #using a wilcox test. Remember to correct the p values for multiple testing!

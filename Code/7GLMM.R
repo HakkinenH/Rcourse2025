@@ -93,7 +93,7 @@ plot(resid(clutch.ri) ~ fitted(clutch.ri), xlab = "Predicted values", ylab = "No
 abline(h = 0, lty = 2)
 #pretty good!
 
-#let#s do more checks
+#let's do more checks
 # In order to check the independence of the model residuals
 # we need to plot residuals vs each covariate of the model
 par(mfrow = c(1, 3), mar = c(4, 4, 0.5, 0.5))
@@ -104,7 +104,7 @@ boxplot(resid(clutch.ri) ~ Ideply, data = clutch, xlab = "Ideply",
         ylab = "Normalized residuals")
 abline(h = 0, lty = 2)
 
-#this last one is for our random effect. It wil likely be all over the place, but should averaged around at 0
+#this last one is for our random effect. It will likely be all over the place, but should averaged around at 0
 boxplot(resid(clutch.ri) ~ strtno, data = clutch, xlab = "structure no.", ylab = "Normalized residuals")
 abline(h = 0, lty = 2)
 #these all look ok!
@@ -125,7 +125,7 @@ summary(clutch.ri)
 #what do we infer from this?
 #there are no p-values! 
 #They mean little in a GLMM, as there are no exact predictions, since random effects add noise to everything, 
-#though you can esimate them with bootstrapping, we won't cover that here
+#though you can estimate them with bootstrapping, we won't cover that here
 
 #date has a small effect on success
 #deployment type has a stronger negative effect
@@ -137,10 +137,21 @@ confint(clutch.ri, method="Wald")
 #but for deployment are not! Some doubt on whether this is a consistent trend of not
 
 
-#'what about the random effects
+#what about the random effects
 #well the strtno explains:
-0.2532/(0.2532+0.5755) #30.6%
-#of the total variance in the model! That's quite a lot, but plenty left over for other effects
+#0.2532 of variance in the data, or 0.5032 as a standard deviation
+
+#a random effect this means that any estimate we make will vary between individuals
+#how much? Well 1 SD of each estimate (68% of the population) will be +/- 0.532, 2 SD (95% of population) will be 1.064
+#so 95% of the population will have ~1 egg more or less than the average estimate
+
+#an example:
+#What is the predicted clutch size of a bird laying at date 110, if Ideply=F?
+16.093267 + (-0.047134*110) #10.909
+#and how much will this vary? by 1.064 (accounting for 95% of the population)
+#so for 95% of sites they will have 9.909-11.909 (around 10% of the total variance in the population)
+
+#That's quite a lot, but plenty left over for other effects
 
 
 
@@ -214,7 +225,6 @@ ggplot(clutch, aes(date, CLUTCH, col=strtno)) + geom_point() +
 #if you really want to quantify random effects, you may run into Best Linear Unbiased Predictions (BLUPs) 
 #these can quantify site-level random effects, without making them fixed effects
 #I have little experience with them, and if you feel you need them, I would maybe recommend abandoning a frequentist approach
-#and swap to Bayesian!
 
 #if random variables, intercepts and slopes are a constant headache
 #consider swapping to Bayesian frameworks, where fixed and random variables are effectively the same thing
